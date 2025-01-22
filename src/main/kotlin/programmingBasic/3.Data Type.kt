@@ -1,12 +1,19 @@
-package com.jago.BasicProgramming
+package toptoppy.kotlin.training.programmingBasic
+
+import kotlin.reflect.typeOf
 
 fun main() {
-
+    inference()
+    stringPlusNumber()
+    types()
 }
 
 private fun inference() {
     val n = 1 + 1.2
     println(n)
+    println(n.javaClass.kotlin.simpleName)
+    println(n::class.simpleName)
+    println(n is Double)
 }
 
 private fun stringPlusNumber() {

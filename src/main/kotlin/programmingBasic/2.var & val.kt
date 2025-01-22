@@ -1,46 +1,33 @@
-package com.jago.BasicProgramming
+package toptoppy.kotlin.training.programmingBasic
 
 fun main() {
+    vars()
     vals()
-//    valIsMutable()
-//    vars()
 }
 
+// Variable: Can reassign
+private fun vars() {
+    var whole = 11
+    // var is mutable
+    whole = 15
+    whole = whole + 5
+    whole += 5
+    var fractional = 1.4
+    var words = "Twas Brillig"
+    println("var")
+    println(whole)
+    println(fractional)
+    println(words)
+}
+
+// Value: only initialize it & Can not reassign
 private fun vals() {
     val whole = 11
-    // whole = 15 // Error   // [1]
+    // whole = 15 // Error
     val fractional = 1.4
     val words = "Twas Brillig"
+    println("val")
     println(whole)
     println(fractional)
     println(words)
 }
-/* Output:
-11
-1.4
-Twas Brillig
-*/
-
-private fun valIsMutable() {
-    var sum = 1
-    sum = sum + 2
-    sum += 3
-    println(sum)
-}
-/* Output:
-6
-*/
-
-private fun vars() {
-    var whole = 11              // [1]
-    var fractional = 1.4        // [2]
-    var words = "Twas Brillig"  // [3]
-    println(whole)
-    println(fractional)
-    println(words)
-}
-/* Output:
-11
-1.4
-Twas Brillig
-*/
