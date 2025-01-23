@@ -1,7 +1,5 @@
 package toptoppy.kotlin.training.programmingBasic
 
-import kotlin.reflect.typeOf
-
 fun main() {
     inference()
     stringPlusNumber()
@@ -26,11 +24,12 @@ private fun types() {
     val trueOrFalse = true
     val words = "A value"
     val character = 'z'
-    val lines = """
+    val lines =
+        """
         Triple quotes let
         you have many lines
         in your string
-    """.trimIndent()
+        """.trimIndent()
 
     println(whole)
     println(fractional)
