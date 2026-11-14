@@ -49,7 +49,7 @@ private fun classAndConstructor() {
     println(zerg.describe())
 }
 
-private class AlienSpecies(
+class AlienSpecies(
     val name: String,
     val eyes: Int,
     val hands: Int,

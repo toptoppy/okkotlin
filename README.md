@@ -1,116 +1,130 @@
 <div align="center">
 
 # ⚡ OkKotlin
-### Production-Grade Modern Kotlin 2.x Craftsmanship & Architecture Showcase
+### Your Progressive Roadmap to Modern Kotlin 2.x — From First Steps to Production Systems
 
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.1.0-7F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org)
 [![JVM](https://img.shields.io/badge/Java-21-ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)](https://openjdk.org)
 [![Coroutines](https://img.shields.io/badge/Coroutines-1.10.1-0095D5.svg?style=for-the-badge&logo=kotlin&logoColor=white)](https://github.com/Kotlin/kotlinx.coroutines)
 [![CI Status](https://img.shields.io/badge/CI-Passing-2ea44f.svg?style=for-the-badge&logo=githubactions&logoColor=white)](.github/workflows/ci.yml)
-[![Tests](https://img.shields.io/badge/Tests-16%20Passed-success.svg?style=for-the-badge)](src/test/kotlin)
+[![Tests](https://img.shields.io/badge/Tests-31%20Passed-success.svg?style=for-the-badge)](src/test/kotlin)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
 <p align="center">
-  A curated, production-grade reference architecture and progressive curriculum demonstrating <b>Modern Kotlin 2.x</b>, <b>K2 Compiler idioms</b>, <b>Structured Concurrency with Coroutines & Flow</b>, <b>Functional Domain Modeling</b>, and a reactive capstone pipeline with automated CI/CD.
+  Welcome to <b>OkKotlin</b>! A friendly, hands-on, step-by-step repository designed for anyone who wants to learn Kotlin.
+  Start with basic syntax and gentle exercises, build an intermediate practice project, and grow all the way to advanced Coroutines, Flow, and clean architecture.
 </p>
 
-[📖 Complete Learning Guide](docs/LEARNING_GUIDE.md) •
-[Quick Start](#-quick-start) •
-[Curriculum & Architecture](#-curriculum-roadmap) •
-[Capstone: EventPulse](#-capstone-project-eventpulse) •
-[Modern Kotlin 2.x Highlights](#-modern-kotlin-2x-highlights) •
-[Testing & CI](#-testing--quality-engineering) •
-[LinkedIn Kit](#-linkedin-portfolio-kit)
+[🌱 Start Here (Beginner Guide)](#-where-to-begin) •
+[📖 Full Learning Guide](docs/LEARNING_GUIDE.md) •
+[Curriculum Roadmap](#-curriculum-roadmap) •
+[Intermediate Practice Project](#-intermediate-bridge-project-taskmanager) •
+[Capstone: EventPulse](#-advanced-capstone-project-eventpulse) •
+[Tests & Verification](#-testing--hands-on-verification)
 
 </div>
 
 ---
 
-## 🌟 Why This Repository Stands Out
+## 🌱 Where to Begin?
 
-Most beginner repositories stop at basic `println()` scripts and simple classes. **OkKotlin** bridges the gap between learning Kotlin syntax and engineering production-ready JVM systems:
+You don't need to understand complex architecture on day one. We’ve organized the repository into 5 gentle stages so you can learn at your own pace:
 
-- 🚀 **Newest Stable Stack:** Built on **Kotlin 2.1.0 (K2 Compiler)**, **Java 21**, and **Kotlinx Coroutines 1.10.1**.
-- 🛡️ **Zero-Cost Type Safety:** Using `@JvmInline value class` and sealed interfaces to eliminate primitive obsession and unhandled states at compile-time.
-- 🌊 **Deep Concurrency:** Cold asynchronous `Flow`, Hot `StateFlow`/`SharedFlow`, buffered `Channel` pipelines, and resilient supervisor scopes with exponential backoff.
-- ⚡ **Real-World Capstone ("EventPulse"):** An end-to-end reactive asynchronous event-processing engine with backpressure, rate limiting, and a type-safe DSL.
-- 🧪 **Test-Driven Craftsmanship:** 100% test pass rate with `kotlin.test`, `kotlinx-coroutines-test` (`runTest`), and `Kotest` assertions integrated into GitHub Actions CI.
+```mermaid
+flowchart LR
+    L1["🌱 1. Foundations<br>(Variables, Loops, Null Safety)"]
+    L2["🧱 2. OOP<br>(Classes, Visibility)"]
+    L3["🛠️ 3. Practice Project<br>(TaskManager CLI)"]
+    L4["🌿 4. Modern Idioms<br>(Sealed, Value Classes)"]
+    L5["⚡ 5. Capstone<br>(EventPulse Pipeline)"]
 
----
+    L1 --> L2 --> L3 --> L4 --> L5
+```
 
-## 📚 How to Learn Kotlin with This Repository
+### Choose Your Study Path:
 
-If you are here to learn Kotlin, follow one of our tailored study tracks:
-
-| Track | Background | Recommended Starting Point |
+| Path | Background | How to Begin |
 | :--- | :--- | :--- |
-| 🟢 **Track A: Beginner** | New to Kotlin / Programming | Start at [Module 1: Foundations](src/main/kotlin/programmingBasic/) with [docs/LEARNING_GUIDE.md](docs/LEARNING_GUIDE.md) |
-| 🔵 **Track B: Java Dev** | Experienced with Java / C# | Skip to [Module 2: OOP](src/main/kotlin/introductionToObject/) and [Module 3: Modern Idioms](src/main/kotlin/modernIdioms/) |
-| 🟣 **Track C: Advanced** | Know basic Kotlin | Jump to [Module 4: Coroutines & Flow](src/main/kotlin/powerOfKotlin/coroutine/) & [Module 5: EventPulse Capstone](src/main/kotlin/capstone/eventpulse/) |
+| 🟢 **Track A: Beginner** | New to Kotlin or programming | Start at [1.Hello, World!.kt](src/main/kotlin/programmingBasic/1.Hello,%20World!.kt) and follow our [Complete Learning Guide](docs/LEARNING_GUIDE.md) with practice tasks for every lesson. |
+| 🔵 **Track B: Java Developer** | Experienced with Java or C# | Skim [Null Safety](src/main/kotlin/programmingBasic/13.Null%20Safety.kt), then jump to [OOP Modeling](src/main/kotlin/introductionToObject/) and [Modern 2.x Idioms](src/main/kotlin/modernIdioms/). |
+| 🟣 **Track C: Intermediate** | Know basic Kotlin | Build the [TaskManager Practice Project](src/main/kotlin/practiceProject/TaskManager.kt) and dive into [Coroutines & Flow](src/main/kotlin/powerOfKotlin/coroutine/). |
 
-> 💡 **Detailed Step-by-Step Curriculum:** Read the full [Complete Learning Guide](docs/LEARNING_GUIDE.md) for code walkthroughs, pro-tips, and self-check exercises for every lesson.  
-> 💡 **Conceptual Analogies:** Read [Core Concepts of Programming Languages](src/main/kotlin/programmingBasic/Core%20Concept%20of%20Programming%20Language.md) for real-world and mathematical analogies explaining variables, types, algorithms, and OOP.
+> 📖 **Interactive Study Guide:** Open [`docs/LEARNING_GUIDE.md`](docs/LEARNING_GUIDE.md) for self-check challenges, expected console outputs, and hints for every single lesson.  
+> 💡 **Theory Primer:** Open [`Core Concepts of Programming Languages`](src/main/kotlin/programmingBasic/Core%20Concept%20of%20Programming%20Language.md) for real-world and mathematical analogies explaining variables, data structures, and algorithms.
 
 ---
 
 ## 🗺️ Curriculum Roadmap
 
-```mermaid
-flowchart TD
-    subgraph Level1 ["1. Kotlin Foundations"]
-        F1["Variables & Types (val/var)"]
-        F2["Functions & String Templates"]
-        F3["Control Flow & Ranges"]
-    end
+### Stage 1: Kotlin Foundations (13 Lessons)
+Located in [`src/main/kotlin/programmingBasic/`](src/main/kotlin/programmingBasic/)
+1. [`1.Hello, World!.kt`](src/main/kotlin/programmingBasic/1.Hello,%20World!.kt) — Minimal entrypoint and toolchain setup
+2. [`2.var & val.kt`](src/main/kotlin/programmingBasic/2.var%20&%20val.kt) — Read-only values vs mutable variables
+3. [`3.Data Type.kt`](src/main/kotlin/programmingBasic/3.Data%20Type.kt) — Type inference and basic types
+4. [`4.Function.kt`](src/main/kotlin/programmingBasic/4.Function.kt) — Function syntax and single-expression functions
+5. [`5.If Expression.kt`](src/main/kotlin/programmingBasic/5.If%20Expression.kt) — Expression-oriented conditionals returning values
+6. [`6.String Templates.kt`](src/main/kotlin/programmingBasic/6.String%20Templates.kt) — String interpolation (`$var`, `${expr}`) and raw strings
+7. [`7.Number Types.kt`](src/main/kotlin/programmingBasic/7.Number%20Types.kt) — Explicit conversions between integer and floating types
+8. [`8.Booleans.kt`](src/main/kotlin/programmingBasic/8.Booleans.kt) — Boolean logic and truth predicates
+9. [`9.While.kt`](src/main/kotlin/programmingBasic/9.While.kt) — `while` and `do-while` loops
+10. [`10.Looping & Ranges.kt`](src/main/kotlin/programmingBasic/10.Looping%20&%20Ranges.kt) — Progression ranges (`1..5`, `until`, `downTo`, `step`)
+11. [`11.The in Keyword.kt`](src/main/kotlin/programmingBasic/11.The%20in%20Keyword.kt) — Interval membership checks and loop iteration
+12. [`12.Expression & Statements.kt`](src/main/kotlin/programmingBasic/12.Expression%20&%20Statements.kt) — Expressions vs statements
+13. [`13.Null Safety.kt`](src/main/kotlin/programmingBasic/13.Null%20Safety.kt) — Eliminating NPEs with `?`, Safe Calls (`?.`), Elvis (`?:`), and Safe Casts (`as?`)
 
-    subgraph Level2 ["2. Object-Oriented Modeling"]
-        O1["Classes & Primary Constructors"]
-        O2["Encapsulation & Visibility"]
-        O3["Packages & Namespaces"]
-    end
+### Stage 2: Object-Oriented Modeling
+Located in [`src/main/kotlin/introductionToObject/`](src/main/kotlin/introductionToObject/)
+- [`1.Objects Everywhere.kt`](src/main/kotlin/introductionToObject/1.Objects%20Everywhere.kt) — Treating primitives as objects
+- [`2.Class.kt`](src/main/kotlin/introductionToObject/2.Class.kt) — Primary constructors, properties, and member functions
+- [`3.Contraining Visibility.kt`](src/main/kotlin/introductionToObject/3.Contraining%20Visibility.kt) — Encapsulation with `private`, `public`, `protected`, `internal`
+- [`4.Packages.kt`](src/main/kotlin/introductionToObject/4.Packages.kt) — Organizing code into namespaces and importing utilities
 
-    subgraph Level3 ["3. Functional & Modern Idioms"]
-        M1["Pure Functions & Immutability"]
-        M2["Sealed Hierarchies & Pattern Matching"]
-        M3["Inline Value Classes (Zero-Cost Types)"]
-        M4["Property & Class Delegation"]
-        M5["Type-Safe Builder DSLs"]
-    end
+### Stage 3: Intermediate Practice Project (TaskManager)
+Located in [`src/main/kotlin/practiceProject/TaskManager.kt`](src/main/kotlin/practiceProject/TaskManager.kt)
+- A hands-on project bridging OOP and Collections before jumping into advanced concurrency.
+- Features data classes, enums, collection filtering, grouping by priority, and null safety.
 
-    subgraph Level4 ["4. Reactive Concurrency"]
-        C1["Structured Concurrency & Suspending Functions"]
-        C2["Cold Flow Streams & Transformations"]
-        C3["Hot StateFlow & SharedFlow"]
-        C4["Buffered Channels & Producer-Consumer"]
-        C5["SupervisorScope & Resilience"]
-    end
+### Stage 4: Functional & Modern Kotlin 2.x Idioms
+Located in [`src/main/kotlin/functionalProgrammingInKotlin/`](src/main/kotlin/functionalProgrammingInKotlin/) and [`src/main/kotlin/modernIdioms/`](src/main/kotlin/modernIdioms/)
+- Pure functions, immutability, higher-order functions, and `Result<T>` monad error handling
+- [`1.SealedHierarchiesAndPatternMatching.kt`](src/main/kotlin/modernIdioms/1.SealedHierarchiesAndPatternMatching.kt) — Algebraic Data Types & exhaustive `when` matching
+- [`2.ValueClassesAndTypeSafety.kt`](src/main/kotlin/modernIdioms/2.ValueClassesAndTypeSafety.kt) — Zero-cost primitive wrapping via `@JvmInline value class`
+- [`3.DelegationPatterns.kt`](src/main/kotlin/modernIdioms/3.DelegationPatterns.kt) — Property delegation (`lazy`, `observable`, `vetoable`) and class delegation
+- [`4.TypeSafeBuilderDsl.kt`](src/main/kotlin/modernIdioms/4.TypeSafeBuilderDsl.kt) — Expressive declarative APIs with `@DslMarker`
+- [`5.ScopeFunctionsIdioms.kt`](src/main/kotlin/modernIdioms/5.ScopeFunctionsIdioms.kt) — Clear decision matrix for `let`, `apply`, `run`, `also`, `with`
 
-    subgraph Capstone ["5. Hero Capstone Engine"]
-        CP["⚡ EventPulse: Reactive Concurrent Pipeline"]
-    end
+### Stage 5: Concurrency & Capstone Architecture
+Located in [`src/main/kotlin/powerOfKotlin/coroutine/`](src/main/kotlin/powerOfKotlin/coroutine/) and [`src/main/kotlin/capstone/eventpulse/`](src/main/kotlin/capstone/eventpulse/)
+- Coroutine primitives (`launch`, `async`, `delay` without blocking threads)
+- Cold asynchronous `Flow` streams with context preservation (`flowOn`)
+- Hot state holders (`StateFlow`) and event broadcasting (`SharedFlow`)
+- Buffered `Channel` pipelines with backpressure handling
+- Resilient `supervisorScope` failure isolation and exponential backoff retries
+- **EventPulse Capstone**: A full reactive asynchronous event processing pipeline
 
-    Level1 --> Level2 --> Level3 --> Level4 --> Capstone
+---
+
+## 🛠️ Intermediate Bridge Project: TaskManager
+
+Before tackling reactive streams or coroutines, test your skills on this cohesive mini-system:
+
+```kotlin
+// Run from terminal:
+// ./gradlew runPracticeProject
+
+val manager = TaskManager()
+manager.addTask(Task("t1", "Master Kotlin Basics", Priority.HIGH))
+manager.addTask(Task("t2", "Explore Null Safety", Priority.HIGH))
+
+// Safe lookup using Elvis operator fallback:
+val task = manager.findTaskById("t99")?.title ?: "Task not found"
 ```
 
 ---
 
-## 📂 Repository Structure
+## ⚡ Advanced Capstone Project: EventPulse
 
-| Module | Location | Key Concepts Covered |
-| :--- | :--- | :--- |
-| **Philosophy & Overview** | [`Main.kt`](src/main/kotlin/Main.kt) | Multi-paradigm Kotlin, language genealogy, why Kotlin over Java |
-| **Programming Basics** | [`programmingBasic/`](src/main/kotlin/programmingBasic/) | 12 progressive lessons: Types, If-Expressions, While/For, Ranges, String Templates |
-| **Object Orientation** | [`introductionToObject/`](src/main/kotlin/introductionToObject/) | Classes, Constructors, Visibility constraints, Packages |
-| **Functional Programming** | [`functionalProgrammingInKotlin/`](src/main/kotlin/functionalProgrammingInKotlin/) | Pure functions, Immutability, Higher-order functions, Result/Optional monads |
-| **Modern Kotlin 2.x Idioms** | [`modernIdioms/`](src/main/kotlin/modernIdioms/) | Sealed Interfaces, Value classes, Delegation (`by lazy`, `observable`, `vetoable`), Builder DSLs |
-| **Coroutines & Flow** | [`powerOfKotlin/coroutine/`](src/main/kotlin/powerOfKotlin/coroutine/) | Cold `Flow`, `StateFlow`, `SharedFlow`, `Channel`, `supervisorScope`, Exponential retry |
-| **Capstone Project** | [`capstone/eventpulse/`](src/main/kotlin/capstone/eventpulse/) | Asynchronous reactive event pipeline, token-bucket rate limiter, StateFlow metrics, Type-Safe DSL |
-
----
-
-## ⚡ Capstone Project: EventPulse
-
-**EventPulse** is a lightweight, concurrent event ingestion and processing pipeline built entirely with Kotlin idioms.
+Once you feel comfortable with basics, explore how modern Kotlin powers high-throughput concurrent JVM systems:
 
 ```mermaid
 sequenceDiagram
@@ -138,123 +152,94 @@ sequenceDiagram
     end
 ```
 
-### Type-Safe Builder DSL Syntax:
-```kotlin
-val pipeline = eventPipeline {
-    name = "HighThroughputTelemetryPipeline"
-    bufferCapacity = 50
-    rateLimitPerSecond = 100
-
-    // Declarative filtering rule
-    filter { event ->
-        when (val payload = event.payload) {
-            is EventPayload.Telemetry -> payload.metricValue > 10.0
-            is EventPayload.SystemAlert -> payload.severity != AlertSeverity.INFO
-            is EventPayload.UserAction -> true
-        }
-    }
-
-    onDeadLetter { deadLetter ->
-        archiveDeadLetter(deadLetter.rawEvent)
-    }
-}
-```
-
----
-
-## 💡 Modern Kotlin 2.x Highlights
-
-### 1. Zero-Cost Value Classes (`@JvmInline`)
-Eliminate primitive obsession without heap allocation overhead:
-```kotlin
-@JvmInline
-value class CustomerId(val value: String) {
-    init { require(value.startsWith("cust_")) }
-}
-
-@JvmInline
-value class OrderId(val value: String)
-
-// Impossible to accidentally swap parameters at compile-time:
-fun process(order: OrderId, customer: CustomerId)
-```
-
-### 2. Sealed Interfaces & Exhaustive Pattern Matching
-Model domain states with zero possibility of unhandled branches:
-```kotlin
-sealed interface PaymentStatus {
-    data class Pending(val txId: String) : PaymentStatus
-    data class Completed(val txId: String, val receipt: String) : PaymentStatus
-    data class Failed(val txId: String, val reason: String) : PaymentStatus
-}
-
-// Compiler enforces exhaustiveness - no 'else' branch needed!
-fun handle(status: PaymentStatus) = when (status) {
-    is PaymentStatus.Pending -> "Pending confirmation"
-    is PaymentStatus.Completed -> "Receipt: ${status.receipt}"
-    is PaymentStatus.Failed -> "Alert: ${status.reason}"
-}
-```
-
----
-
-## 🚀 Quick Start
-
-### Prerequisites
-- JDK 21+
-- Git
-
-### Build & Run
+Run the Capstone Demo:
 ```bash
-# Clone the repository
-git clone git@github.com:toptoppy/okkotlin.git
-cd okkotlin
-
-# Run all unit and asynchronous coroutine tests (16 tests)
-./gradlew test
-
-# Run the EventPulse Capstone Demo
 ./gradlew runCapstone
-
-# Run the Main entrypoint
-./gradlew run
 ```
 
 ---
 
-## 🧪 Testing & Quality Engineering
+## 🧪 Testing & Hands-On Verification
 
-The test suite covers unit logic, coroutine flows, state changes, and pipeline throughput under concurrency:
+We believe in **Test-Driven Learning**. The repository contains **31 automated tests** covering every level of the curriculum:
 
 ```bash
-./gradlew test --info
+# Run all 31 tests
+./gradlew test
 ```
 
 ```
-EventPipelineTest > test pipeline filtering and success dispatch() PASSED
-EventPipelineTest > test dead letter handling when unhandled exception occurs() PASSED
-CoroutineAndFlowTest > test cold flow transformations and emissions() PASSED
-CoroutineAndFlowTest > test StateFlow and SharedFlow updates() PASSED
-CoroutineAndFlowTest > test exponential backoff retry on transient errors() PASSED
+BasicConceptsTest > test number conversion without auto-widening() PASSED
+BasicConceptsTest > test string template interpolation() PASSED
+BasicConceptsTest > test beginner practice challenge - compute discounted price() PASSED
+BasicConceptsTest > test safe call operator with null and non-null values() PASSED
+BasicConceptsTest > test Elvis operator providing fallback values() PASSED
+BasicConceptsTest > test expression oriented if-else() PASSED
+BasicConceptsTest > test in keyword containment() PASSED
+BasicConceptsTest > test while loop summation() PASSED
+BasicConceptsTest > test safe cast operator as-safe preventing ClassCastException() PASSED
+BasicConceptsTest > test range progression calculation() PASSED
+
+ObjectModelingTest > test Cup initial state and capacity cap() PASSED
+ObjectModelingTest > test AlienSpecies constructor properties and description() PASSED
+ObjectModelingTest > test Cookie public interaction and eating() PASSED
+ObjectModelingTest > test beginner practice challenge - model a BankAccount class() PASSED
+
+TaskManagerTest > test complete task and completion rate calculation() PASSED
+TaskManagerTest > test adding task and enforcing unique ID() PASSED
+TaskManagerTest > test grouping tasks by priority() PASSED
+TaskManagerTest > test filtering pending vs completed tasks() PASSED
+TaskManagerTest > test finding task with null safety fallback() PASSED
+
+FunctionalConceptsTest > test immutable list preservation() PASSED
+FunctionalConceptsTest > test Result monad safe failure recovery() PASSED
+FunctionalConceptsTest > test higher order function execution() PASSED
+
 ModernIdiomsTest > test sealed payment status pattern matching() PASSED
 ModernIdiomsTest > test value class zero-cost type safety and validation() PASSED
 ModernIdiomsTest > test type-safe HTTP builder DSL() PASSED
 ModernIdiomsTest > test property delegation with vetoable and trimmed string() PASSED
-FunctionalConceptsTest > test immutable list preservation() PASSED
-FunctionalConceptsTest > test Result monad safe failure recovery() PASSED
-BasicConceptsTest > test range progression calculation() PASSED
-...
-BUILD SUCCESSFUL (16 tests passed)
+
+CoroutineAndFlowTest > test StateFlow and SharedFlow updates() PASSED
+CoroutineAndFlowTest > test exponential backoff retry on transient errors() PASSED
+CoroutineAndFlowTest > test cold flow transformations and emissions() PASSED
+
+EventPipelineTest > test pipeline filtering and success dispatch() PASSED
+EventPipelineTest > test dead letter handling when unhandled exception occurs() PASSED
+
+BUILD SUCCESSFUL in 2s (31 tests passed, 0 failures)
 ```
 
 ---
 
-## 💼 LinkedIn Portfolio Kit
+## 💼 LinkedIn Showcase & Portfolio Kit
 
-Ready-to-publish content to showcase this repository on LinkedIn:
+Ready-to-publish content to showcase your learning journey and projects on LinkedIn:
 - 📄 [Launch Post Templates](docs/linkedin/LAUNCH_POST_TEMPLATE.md) — 3 high-converting post formats (Storytelling, Technical Deep-Dive, Quick Cheatsheet).
 - 🎨 [Carousel Slide Blueprint](docs/linkedin/CAROUSEL_SLIDE_BLUEPRINT.md) — 7-slide layout guide on *"5 Modern Kotlin 2.x Patterns You Should Use"*.
-- 🎙️ [Interview & Portfolio Guide](docs/linkedin/INTERVIEW_AND_PORTFOLIO_GUIDE.md) — 2-minute elevator pitch and architectural talking points.
+- 🎙️ [Interview & Portfolio Guide](docs/linkedin/INTERVIEW_AND_PORTFOLIO_GUIDE.md) — 30-second elevator pitch and senior technical interview Q&A.
+
+---
+
+## 🚀 Quick Commands Summary
+
+```bash
+# Clone
+git clone git@github.com:toptoppy/okkotlin.git
+cd okkotlin
+
+# Run main philosophy entrypoint
+./gradlew run
+
+# Run intermediate practice project
+./gradlew runPracticeProject
+
+# Run EventPulse reactive capstone demo
+./gradlew runCapstone
+
+# Run all 31 automated tests
+./gradlew test
+```
 
 ---
 

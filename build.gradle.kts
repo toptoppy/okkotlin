@@ -32,6 +32,13 @@ tasks.register<JavaExec>("runCapstone") {
     mainClass.set("toptoppy.kotlin.training.capstone.eventpulse.EventPulseDemoKt")
 }
 
+tasks.register<JavaExec>("runPracticeProject") {
+    group = "application"
+    description = "Runs the intermediate TaskManager practice project"
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass.set("toptoppy.kotlin.training.practiceProject.TaskManagerKt")
+}
+
 tasks.test {
     useJUnitPlatform()
     testLogging {
