@@ -1,5 +1,7 @@
 package toptoppy.kotlin.training.functionalProgrammingInKotlin
 
+import java.util.Optional
+
 fun main() {
     println("--- 1. Pure Function Example ---")
     pureFunctionExample()
@@ -17,12 +19,15 @@ fun main() {
     resultHandlingExample()
 }
 
-
 // 1. Pure Function Example
 fun pureFunctionExample() {
     // Imperative Style
     var total = 0
-    fun addImperative(a: Int, b: Int) {
+
+    fun addImperative(
+        a: Int,
+        b: Int,
+    ) {
         total = a + b // Side effect (modifying state)
         println("Imperative Result: $total")
     }
@@ -30,7 +35,10 @@ fun pureFunctionExample() {
     addImperative(5, 3)
 
     // Functional Style
-    fun addFunctional(a: Int, b: Int): Int = a + b // Pure: no side effects
+    fun addFunctional(
+        a: Int,
+        b: Int,
+    ): Int = a + b // Pure: no side effects
     println("Functional Result: ${addFunctional(5, 3)}")
 }
 
@@ -47,13 +55,14 @@ fun immutabilityExample() {
     println("Functional Immutable List: $newList")
 }
 
-
 // 3. Higher-Order Function Example
 fun higherOrderFunctionExample() {
     // Function that accepts another function as an argument
-    fun operate(a: Int, b: Int, operation: (Int, Int) -> Int): Int {
-        return operation(a, b)
-    }
+    fun operate(
+        a: Int,
+        b: Int,
+        operation: (Int, Int) -> Int,
+    ): Int = operation(a, b)
 
     val sum = operate(10, 5) { x, y -> x + y }
     val product = operate(10, 5) { x, y -> x * y }
@@ -80,29 +89,38 @@ fun mapFlatMapExample() {
     val nestedList = listOf(listOf(1, 2), listOf(3, 4))
     val flattenedList = nestedList.flatMap { it.map { num -> num * 2 } }
     println("Flattened List with FlatMap: $flattenedList")
+
+    val op1 = Optional.of(10.0)
+    val op2 = Optional.of(20.0)
+
+    val flattenOps = op1.flatMap { op -> op2.map { op * it } }
+    println("Optional FlatMap: $flattenOps")
 }
 
 // 5. Error Handling with Result
 fun resultHandlingExample() {
     // Imperative Style
-    fun divideImperative(a: Int, b: Int): Double? {
-        return try {
+    fun divideImperative(
+        a: Int,
+        b: Int,
+    ): Double? =
+        try {
             a.toDouble() / b
         } catch (e: Exception) {
             null
         }
-    }
     println("Imperative Division Result: ${divideImperative(10, 2)}")
 
     // Functional Style
-    fun divideFunctional(a: Int, b: Int): Result<Double> {
-        return runCatching { a.toDouble() / b }
-    }
+    fun divideFunctional(
+        a: Int,
+        b: Int,
+    ): Result<Double> = runCatching { a.toDouble() / b }
 
     val result = divideFunctional(10, 0)
     result.fold(
         onSuccess = { println("Functional Division Success: $it") },
-        onFailure = { println("Functional Division Error: ${it.message}") }
+        onFailure = { println("Functional Division Error: ${it.message}") },
     )
 }
 
