@@ -11,7 +11,8 @@ private fun inference() {
     println(n)
     println(n.javaClass.kotlin.simpleName)
     println(n::class.simpleName)
-    println(n is Double)
+    val mystery: Any = n
+    println(mystery is Double)
 }
 
 private fun stringPlusNumber() {

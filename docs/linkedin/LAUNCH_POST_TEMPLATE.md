@@ -27,7 +27,7 @@ Moving from simple async/await to resilient asynchronous pipelines: cold `Flow`,
 Instead of just snippet files, I engineered an end-to-end reactive event-processing pipeline with token-bucket rate limiting and a Type-Safe Builder DSL (`eventPipeline { ... }`).
 
 5️⃣ Test-Driven Craftsmanship:
-100% test coverage using `kotlin.test`, `kotlinx-coroutines-test` with virtual time, Kotest assertions, and automated GitHub Actions CI running on JDK 21.
+31 automated tests using `kotlin.test`, `kotlinx-coroutines-test`, and Kotest assertions, run in GitHub Actions on JDK 21.
 
 Whether you’re migrating a legacy Java codebase or architecting high-throughput Kotlin services, I hope this repository serves as a valuable reference.
 

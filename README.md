@@ -45,11 +45,11 @@ flowchart LR
 
 | Path | Background | How to Begin |
 | :--- | :--- | :--- |
-| 🟢 **Track A: Beginner** | New to Kotlin or programming | Start at [1.Hello, World!.kt](src/main/kotlin/programmingBasic/1.Hello,%20World!.kt) and follow our [Complete Learning Guide](docs/LEARNING_GUIDE.md) with practice tasks for every lesson. |
+| 🟢 **Track A: Beginner** | New to Kotlin or programming | Start at [1.Hello, World!.kt](src/main/kotlin/programmingBasic/1.Hello,%20World!.kt) and follow the practice tasks in the [Learning Guide](docs/LEARNING_GUIDE.md). |
 | 🔵 **Track B: Java Developer** | Experienced with Java or C# | Skim [Null Safety](src/main/kotlin/programmingBasic/13.Null%20Safety.kt), then jump to [OOP Modeling](src/main/kotlin/introductionToObject/) and [Modern 2.x Idioms](src/main/kotlin/modernIdioms/). |
 | 🟣 **Track C: Intermediate** | Know basic Kotlin | Build the [TaskManager Practice Project](src/main/kotlin/practiceProject/TaskManager.kt) and dive into [Coroutines & Flow](src/main/kotlin/powerOfKotlin/coroutine/). |
 
-> 📖 **Interactive Study Guide:** Open [`docs/LEARNING_GUIDE.md`](docs/LEARNING_GUIDE.md) for self-check challenges, expected console outputs, and hints for every single lesson.  
+> 📖 **Learning Guide:** Open [`docs/LEARNING_GUIDE.md`](docs/LEARNING_GUIDE.md) for foundation practice tasks, sample outputs, and selected hints.
 > 💡 **Theory Primer:** Open [`Core Concepts of Programming Languages`](src/main/kotlin/programmingBasic/Core%20Concept%20of%20Programming%20Language.md) for real-world and mathematical analogies explaining variables, data structures, and algorithms.
 
 ---

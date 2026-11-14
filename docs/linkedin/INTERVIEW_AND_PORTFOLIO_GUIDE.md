@@ -5,7 +5,7 @@ Use this guide when discussing **OkKotlin** with recruiters, hiring managers, an
 ---
 
 ## 🎙️ The 30-Second Elevator Pitch
-> *"I built OkKotlin as a production-grade showcase of modern Kotlin 2.x and reactive JVM architecture. It demonstrates how modern language idioms—like inline value classes, sealed interface state machines, and structured concurrency with Coroutines and Flow—can eliminate whole classes of runtime bugs at compile time. It includes an end-to-end reactive event pipeline capstone with rate limiting and 100% automated test coverage in GitHub Actions CI on JDK 21."*
+> *"I built OkKotlin as a showcase of modern Kotlin 2.x and reactive JVM architecture. It demonstrates inline value classes, sealed interface state models, and structured concurrency with Coroutines and Flow. It includes an event pipeline capstone with rate limiting, and its automated tests run in GitHub Actions on JDK 21."*
 
 ---
 
@@ -20,7 +20,7 @@ Use this guide when discussing **OkKotlin** with recruiters, hiring managers, an
 >
 > 3. **The EventPulse Capstone:** To demonstrate these patterns in action, I engineered 'EventPulse'—an asynchronous event processing engine featuring a token-bucket rate limiter, StateFlow-backed real-time metrics, dead-letter routing, and a Type-Safe Builder DSL (`@DslMarker`).
 >
-> Everything is verified with 16 automated tests using `kotlin.test`, `kotlinx-coroutines-test` with virtual time control, Kotest assertions, and automated GitHub Actions CI."*
+> The repository includes 31 automated tests using `kotlin.test`, `kotlinx-coroutines-test`, and Kotest assertions. GitHub Actions runs them on JDK 21."*
 
 ---
 

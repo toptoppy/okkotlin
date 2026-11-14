@@ -1,6 +1,6 @@
 # 📚 The OkKotlin Learning & Study Guide
 
-Welcome! Whether you are writing your first line of code, transitioning from Java, or preparing for senior Kotlin backend interviews, this guide provides a step-by-step curriculum with hands-on practice challenges for **every single lesson**.
+Welcome! Whether you are writing your first line of code or moving to Kotlin from Java, this guide takes you from foundation lessons and practice tasks to advanced examples and the EventPulse capstone.
 
 ---
 
@@ -12,7 +12,7 @@ flowchart TD
 
     TrackA["🟢 Track A: New to Kotlin<br>Start at Module 1"]
     TrackB["🔵 Track B: Java Developer<br>Start at Module 2 & 3"]
-    TrackC["🟣 Track C: Advanced Concurrency<br>Start at Module 4 & Capstone"]
+    TrackC["🟣 Track C: Advanced Concurrency<br>Start at Module 5 & Capstone"]
 
     Start -->|Beginner / Exploring Kotlin| TrackA
     Start -->|Experienced with Java/C#| TrackB
@@ -20,11 +20,11 @@ flowchart TD
 ```
 
 - **🟢 Track A: New to Kotlin**  
-  Follow sequentially from **Module 1** through **Module 5**. Complete the practice challenge at the end of every lesson to build muscle memory!
+  Follow **Module 1** through **Module 5** in order. Try the practice tasks in Module 1 and the selected tasks in Module 2.
 - **🔵 Track B: Java Developer Transitioning to Kotlin**  
-  Skim Module 1 for Kotlin syntax differences (`val` vs `var`, string templates, expression-oriented if/when, null safety), then dive into **Module 2 (OOP & Data Classes)**, **Module 3 (Modern Idioms & Value Classes)**, and **Module 4 (Coroutines vs Threads)**.
+  Skim Module 1 for Kotlin syntax differences (`val` vs `var`, string templates, expressions, and null safety), then explore **Module 2 (object-oriented modeling)**, **Module 3 (TaskManager)**, and **Module 4 (functional and modern Kotlin idioms)**.
 - **🟣 Track C: Intermediate Kotlin Developer**  
-  Jump directly to **Intermediate Bridge Project (TaskManager)**, **Module 4 (Flow, Channels, Structured Concurrency)**, and **Module 5 (EventPulse Capstone Engine)**.
+  Build **Module 3 (TaskManager)**, then study **Module 5 (coroutines, Flow, channels, and EventPulse)**.
 
 ---
 
@@ -47,7 +47,7 @@ flowchart TD
 # Run the EventPulse reactive capstone demo
 ./gradlew runCapstone
 
-# Run all 31 automated tests to verify your solutions
+# Run the project's example tests; compare your practice task output with this guide
 ./gradlew test
 ```
 
@@ -225,7 +225,7 @@ Companion Theory Guide: [`Core Concept of Programming Language.md`](../src/main/
   Greeting 1: Welcome back, Alex!
   Greeting 2: Welcome, Guest!
   ```
-- 💡 **Hint:** `val name = nickname ?: "Guest"; return "Welcome, $name!"`
+- 💡 **Hint:** Use `nickname?.let { "Welcome back, $it!" } ?: "Welcome, Guest!"`.
 
 ---
 

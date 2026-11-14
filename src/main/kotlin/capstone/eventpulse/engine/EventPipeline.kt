@@ -40,34 +40,30 @@ class EventPipeline(
     fun processStream(): Flow<ProcessingResult> = flow {
         for (event in incomingChannel) {
             rateLimiter.acquire()
-
-            // 1. Evaluate pipeline filters
-            val passesFilters = filters.all { filter ->
-                try {
-                    filter(event)
-                } catch (e: Exception) {
-                    false
-                }
-            }
-
-            val result: ProcessingResult = if (!passesFilters) {
-                ProcessingResult.Filtered(event.id, "Rejected by pipeline filters")
-            } else {
-                try {
-                    // Simulate transformation / storage
-                    val details = "Dispatched payload: ${event.payload::class.simpleName}"
-                    ProcessingResult.Success(event.id, details)
-                } catch (e: Exception) {
-                    val deadLetter = ProcessingResult.DeadLetter(event.id, e.message ?: "Unknown error", event)
-                    deadLetterHandler?.invoke(deadLetter)
-                    deadLetter
-                }
-            }
-
+            val result = processEvent(event)
             metricsCollector.record(result)
             emit(result)
         }
     }.flowOn(Dispatchers.Default)
+
+    private fun processEvent(event: Event): ProcessingResult {
+        val passesFilters = filters.all { filter ->
+            runCatching { filter(event) }.getOrDefault(false)
+        }
+
+        if (!passesFilters) {
+            return ProcessingResult.Filtered(event.id, "Rejected by pipeline filters")
+        }
+
+        return try {
+            val details = "Dispatched payload: ${event.payload::class.simpleName}"
+            ProcessingResult.Success(event.id, details)
+        } catch (e: Exception) {
+            val deadLetter = ProcessingResult.DeadLetter(event.id, e.message ?: "Unknown error", event)
+            deadLetterHandler?.invoke(deadLetter)
+            deadLetter
+        }
+    }
 
     fun startWorker(scope: CoroutineScope, onResult: (ProcessingResult) -> Unit) = scope.launch {
         processStream().collect { result ->

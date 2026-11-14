@@ -68,7 +68,7 @@ A friendly conceptual primer mapping theoretical computer science fundamentals t
 > - **Set:** A puzzle box containing unique pieces (no duplicates).  
 > - **Map:** A phone book associating names (unique keys) with phone numbers (values).
 
-👉 **Try it in code:** [11.The in Keyword.kt](11.The%20in%20Keyword.kt)
+👉 **Try it in code:** [TaskManager.kt](../practiceProject/TaskManager.kt) uses lists and collection operations to organize tasks.
 
 ---
 
