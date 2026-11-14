@@ -27,8 +27,8 @@ jobs:
       - name: Grant Execute Permission for Gradlew
         run: chmod +x gradlew
 
-      - name: Compile and Run Tests
-        run: ./gradlew check test --info
+      - name: Compile, Lint & Run Tests (Root & KMP)
+        run: ./gradlew ktlintCheck detekt check test :kmp-core:allTests :kmp-core:ktlintCheck :kmp-core:detekt --info
 
       - name: Publish Test Report
         if: always()

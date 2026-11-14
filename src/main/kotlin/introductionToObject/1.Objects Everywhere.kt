@@ -1,6 +1,6 @@
 package toptoppy.kotlin.training.introductionToObject
 
-fun main(){
+fun main() {
     val r1 = IntRange(0, 3)
     val r2 = IntRange(0, 3)
 
@@ -16,4 +16,3 @@ fun main(){
 }
 
 class Beer
-

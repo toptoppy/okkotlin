@@ -5,14 +5,16 @@
 
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.1.0-7F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org)
 [![JVM](https://img.shields.io/badge/Java-21-ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)](https://openjdk.org)
-[![Coroutines](https://img.shields.io/badge/Coroutines-1.10.1-0095D5.svg?style=for-the-badge&logo=kotlin&logoColor=white)](https://github.com/Kotlin/kotlinx.coroutines)
+[![KMP](https://img.shields.io/badge/KMP-Multiplatform-F88909.svg?style=for-the-badge&logo=kotlin&logoColor=white)](kmp-core)
+[![Ktlint](https://img.shields.io/badge/Ktlint-Enforced-success.svg?style=for-the-badge)](https://pinterest.github.io/ktlint/)
+[![Detekt](https://img.shields.io/badge/Detekt-0%20Smells-brightgreen.svg?style=for-the-badge)](https://detekt.dev/)
 [![CI Status](https://img.shields.io/badge/CI-Passing-2ea44f.svg?style=for-the-badge&logo=githubactions&logoColor=white)](.github/workflows/ci.yml)
-[![Tests](https://img.shields.io/badge/Tests-31%20Passed-success.svg?style=for-the-badge)](src/test/kotlin)
+[![Tests](https://img.shields.io/badge/Tests-33%20%2B%20KMP%20Passed-success.svg?style=for-the-badge)](src/test/kotlin)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
 <p align="center">
   Welcome to <b>OkKotlin</b>! A friendly, hands-on, step-by-step repository designed for anyone who wants to learn Kotlin.
-  Start with basic syntax and gentle exercises, build an intermediate practice project, and grow all the way to advanced Coroutines, Flow, and clean architecture.
+  Start with basic syntax and gentle exercises, build an intermediate practice project, and grow all the way to advanced Coroutines, Flow, Kotlin Multiplatform (KMP), and clean architecture.
 </p>
 
 [🌱 Start Here (Beginner Guide)](#-where-to-begin) •
@@ -20,6 +22,7 @@
 [Curriculum Roadmap](#-curriculum-roadmap) •
 [Intermediate Practice Project](#-intermediate-bridge-project-taskmanager) •
 [Capstone: EventPulse](#-advanced-capstone-project-eventpulse) •
+[Multiplatform: KMP](#-kotlin-multiplatform-kmp-shared-module) •
 [Tests & Verification](#-testing--hands-on-verification)
 
 </div>
@@ -28,7 +31,7 @@
 
 ## 🌱 Where to Begin?
 
-You don't need to understand complex architecture on day one. We’ve organized the repository into 5 gentle stages so you can learn at your own pace:
+You don't need to understand complex architecture on day one. We’ve organized the repository into 6 gentle stages so you can learn at your own pace:
 
 ```mermaid
 flowchart LR
@@ -37,17 +40,19 @@ flowchart LR
     L3["🛠️ 3. Practice Project<br>(TaskManager CLI)"]
     L4["🌿 4. Modern Idioms<br>(Sealed, Value Classes)"]
     L5["⚡ 5. Capstone<br>(EventPulse Pipeline)"]
+    L6["🌐 6. KMP Core<br>(JVM + JS Multiplatform)"]
 
-    L1 --> L2 --> L3 --> L4 --> L5
+    L1 --> L2 --> L3 --> L4 --> L5 --> L6
 ```
 
 ### Choose Your Study Path:
 
 | Path | Background | How to Begin |
 | :--- | :--- | :--- |
-| 🟢 **Track A: Beginner** | New to Kotlin or programming | Start at [1.Hello, World!.kt](src/main/kotlin/programmingBasic/1.Hello,%20World!.kt) and follow the practice tasks in the [Learning Guide](docs/LEARNING_GUIDE.md). |
+| 🟢 **Track A: Beginner** | New to Kotlin or programming | Start at [1.Hello World.kt](src/main/kotlin/programmingBasic/1.Hello%20World.kt) and follow the practice tasks in the [Learning Guide](docs/LEARNING_GUIDE.md). |
 | 🔵 **Track B: Java Developer** | Experienced with Java or C# | Skim [Null Safety](src/main/kotlin/programmingBasic/13.Null%20Safety.kt), then jump to [OOP Modeling](src/main/kotlin/introductionToObject/) and [Modern 2.x Idioms](src/main/kotlin/modernIdioms/). |
 | 🟣 **Track C: Intermediate** | Know basic Kotlin | Build the [TaskManager Practice Project](src/main/kotlin/practiceProject/TaskManager.kt) and dive into [Coroutines & Flow](src/main/kotlin/powerOfKotlin/coroutine/). |
+| 🟡 **Track D: Cross-Platform** | Mobile / Full-stack | Explore [Kotlin Multiplatform (`kmp-core`)](kmp-core/) for sharing domain logic across JVM and JS. |
 
 > 📖 **Learning Guide:** Open [`docs/LEARNING_GUIDE.md`](docs/LEARNING_GUIDE.md) for foundation practice tasks, sample outputs, and selected hints.
 > 💡 **Theory Primer:** Open [`Core Concepts of Programming Languages`](src/main/kotlin/programmingBasic/Core%20Concept%20of%20Programming%20Language.md) for real-world and mathematical analogies explaining variables, data structures, and algorithms.
@@ -58,7 +63,7 @@ flowchart LR
 
 ### Stage 1: Kotlin Foundations (13 Lessons)
 Located in [`src/main/kotlin/programmingBasic/`](src/main/kotlin/programmingBasic/)
-1. [`1.Hello, World!.kt`](src/main/kotlin/programmingBasic/1.Hello,%20World!.kt) — Minimal entrypoint and toolchain setup
+1. [`1.Hello World.kt`](src/main/kotlin/programmingBasic/1.Hello%20World.kt) — Minimal entrypoint and toolchain setup
 2. [`2.var & val.kt`](src/main/kotlin/programmingBasic/2.var%20&%20val.kt) — Read-only values vs mutable variables
 3. [`3.Data Type.kt`](src/main/kotlin/programmingBasic/3.Data%20Type.kt) — Type inference and basic types
 4. [`4.Function.kt`](src/main/kotlin/programmingBasic/4.Function.kt) — Function syntax and single-expression functions
@@ -101,6 +106,13 @@ Located in [`src/main/kotlin/powerOfKotlin/coroutine/`](src/main/kotlin/powerOfK
 - Buffered `Channel` pipelines with backpressure handling
 - Resilient `supervisorScope` failure isolation and exponential backoff retries
 - **EventPulse Capstone**: A full reactive asynchronous event processing pipeline
+
+### Stage 6: Kotlin Multiplatform (KMP) Architecture
+Located in [`kmp-core/`](kmp-core/)
+- `expect` / `actual` target declarations bridging platform-specific runtimes
+- Multi-target compilation for **JVM** and **JavaScript (Node.js)**
+- Shared domain models and telemetry services (`DeviceTelemetryService`)
+- Symmetrical cross-platform automated test verification
 
 ---
 
@@ -159,55 +171,111 @@ Run the Capstone Demo:
 
 ---
 
-## 🧪 Testing & Hands-On Verification
+## 🌐 Kotlin Multiplatform (KMP) Shared Module
 
-We believe in **Test-Driven Learning**. The repository contains **31 automated tests** covering every level of the curriculum:
+The [`kmp-core/`](kmp-core/) module illustrates real-world Kotlin Multiplatform architecture targeting both the **JVM** and **JavaScript (Node.js)**:
+
+```mermaid
+flowchart TD
+    subgraph Common["📦 kmp-core (commonMain)"]
+        D["PlatformModels.kt<br>(PlatformInfo, TelemetryReport)"]
+        S["DeviceTelemetryService.kt<br>(Business Rules & Metrics)"]
+        E["expect fun getPlatformName(): String<br>expect fun generatePlatformUUID(): String"]
+    end
+
+    subgraph JVM["☕ JVM (jvmMain)"]
+        JA["actual fun getPlatformName() -> JVM 21<br>actual fun generatePlatformUUID() -> java.util.UUID"]
+    end
+
+    subgraph JS["🌐 JavaScript (jsMain)"]
+        JSA["actual fun getPlatformName() -> Node.js<br>actual fun generatePlatformUUID() -> Crypto UUID"]
+    end
+
+    subgraph App["🚀 Root Application (JVM)"]
+        Root["Main.kt & Capstone Engine<br>Consume kmp-core via Gradle project dependency"]
+    end
+
+    Common --> JVM
+    Common --> JS
+    JVM --> App
+```
+
+- **Target Verification:** Both targets compile and run automated unit tests independently.
+- **Run Multiplatform Tests:**
+  ```bash
+  # Runs both JVM tests and JavaScript (Node.js) test runner
+  ./gradlew :kmp-core:allTests
+  ```
+
+---
+
+## 🛡️ Code Quality & Static Analysis (Ktlint + Detekt)
+
+OkKotlin enforces production-grade engineering standards through automated static analysis:
+- **[Ktlint](https://pinterest.github.io/ktlint/):** Official Kotlin style guide formatting and linting.
+- **[Detekt](https://detekt.dev/):** Static code analysis reporting complexity, potential bugs, and code smells.
+- **Strict Quality Gate:** **0 Detekt Code Smells** and **0 Ktlint Violations** required on every build and CI run.
 
 ```bash
-# Run all 31 tests
-./gradlew test
+# Run styling checks & code smell analysis
+./gradlew ktlintCheck detekt
+
+# Auto-format codebase
+./gradlew ktlintFormat
+```
+
+---
+
+## 🧪 Testing & Hands-On Verification
+
+We believe in **Test-Driven Learning**. The repository contains **33 automated unit tests** in the JVM module plus cross-platform test suites in `kmp-core`:
+
+```bash
+# Run all tests across root and multiplatform targets
+./gradlew check test :kmp-core:allTests
 ```
 
 ```
-BasicConceptsTest > test number conversion without auto-widening() PASSED
-BasicConceptsTest > test string template interpolation() PASSED
-BasicConceptsTest > test beginner practice challenge - compute discounted price() PASSED
-BasicConceptsTest > test safe call operator with null and non-null values() PASSED
-BasicConceptsTest > test Elvis operator providing fallback values() PASSED
-BasicConceptsTest > test expression oriented if-else() PASSED
-BasicConceptsTest > test in keyword containment() PASSED
-BasicConceptsTest > test while loop summation() PASSED
-BasicConceptsTest > test safe cast operator as-safe preventing ClassCastException() PASSED
-BasicConceptsTest > test range progression calculation() PASSED
-
+EventPipelineTest > test dead letter handling when unhandled exception occurs() PASSED
+EventPipelineTest > test pipeline filtering and success dispatch() PASSED
+FunctionalConceptsTest > test immutable list preservation() PASSED
+FunctionalConceptsTest > test Result monad safe failure recovery() PASSED
+FunctionalConceptsTest > test higher order function execution() PASSED
 ObjectModelingTest > test Cup initial state and capacity cap() PASSED
 ObjectModelingTest > test AlienSpecies constructor properties and description() PASSED
 ObjectModelingTest > test Cookie public interaction and eating() PASSED
 ObjectModelingTest > test beginner practice challenge - model a BankAccount class() PASSED
-
+KmpIntegrationTest > testDirectExpectActualResolutionOnJvm() PASSED
+KmpIntegrationTest > testConsumeKmpSharedModuleFromJvmApplication() PASSED
+ModernIdiomsTest > test sealed payment status pattern matching() PASSED
+ModernIdiomsTest > test value class zero-cost type safety and validation() PASSED
+ModernIdiomsTest > test type-safe HTTP builder DSL() PASSED
+ModernIdiomsTest > test property delegation with vetoable and trimmed string() PASSED
+CoroutineAndFlowTest > test StateFlow and SharedFlow updates() PASSED
+CoroutineAndFlowTest > test exponential backoff retry on transient errors() PASSED
+CoroutineAndFlowTest > test cold flow transformations and emissions() PASSED
 TaskManagerTest > test complete task and completion rate calculation() PASSED
 TaskManagerTest > test adding task and enforcing unique ID() PASSED
 TaskManagerTest > test grouping tasks by priority() PASSED
 TaskManagerTest > test filtering pending vs completed tasks() PASSED
 TaskManagerTest > test finding task with null safety fallback() PASSED
+BasicConceptsTest > test number conversion without auto-widening() PASSED
+BasicConceptsTest > test string template interpolation() PASSED
+BasicConceptsTest > test beginner practice challenge - compute discounted price() PASSED
+BasicConceptsTest > test safe call operator with null and non-null values() PASSED
+BasicConceptsTest > test expression oriented if-else() PASSED
+BasicConceptsTest > test Elvis operator providing fallback values() PASSED
+BasicConceptsTest > test in keyword containment() PASSED
+BasicConceptsTest > test while loop summation() PASSED
+BasicConceptsTest > test safe cast operator as-safe preventing ClassCastException() PASSED
+BasicConceptsTest > test range progression calculation() PASSED
 
-FunctionalConceptsTest > test immutable list preservation() PASSED
-FunctionalConceptsTest > test Result monad safe failure recovery() PASSED
-FunctionalConceptsTest > test higher order function execution() PASSED
+kmp-core (JVM) > JvmPlatformTest PASSED
+kmp-core (JVM) > PlatformTest PASSED
+kmp-core (Node.js) > JsPlatformTest PASSED
+kmp-core (Node.js) > PlatformTest PASSED
 
-ModernIdiomsTest > test sealed payment status pattern matching() PASSED
-ModernIdiomsTest > test value class zero-cost type safety and validation() PASSED
-ModernIdiomsTest > test type-safe HTTP builder DSL() PASSED
-ModernIdiomsTest > test property delegation with vetoable and trimmed string() PASSED
-
-CoroutineAndFlowTest > test StateFlow and SharedFlow updates() PASSED
-CoroutineAndFlowTest > test exponential backoff retry on transient errors() PASSED
-CoroutineAndFlowTest > test cold flow transformations and emissions() PASSED
-
-EventPipelineTest > test pipeline filtering and success dispatch() PASSED
-EventPipelineTest > test dead letter handling when unhandled exception occurs() PASSED
-
-BUILD SUCCESSFUL in 2s (31 tests passed, 0 failures)
+BUILD SUCCESSFUL (100% Passed, 0 Failures, 0 Code Smells)
 ```
 
 ---
@@ -237,8 +305,14 @@ cd okkotlin
 # Run EventPulse reactive capstone demo
 ./gradlew runCapstone
 
-# Run all 31 automated tests
-./gradlew test
+# Run all automated tests (JVM & Multiplatform)
+./gradlew test :kmp-core:allTests
+
+# Run static quality analysis (Ktlint & Detekt)
+./gradlew ktlintCheck detekt
+
+# Auto-format codebase
+./gradlew ktlintFormat
 ```
 
 ---

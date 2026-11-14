@@ -1,6 +1,8 @@
 plugins {
     kotlin("jvm") version "2.1.0"
     application
+    id("org.jlleitschuh.gradle.ktlint") version "12.1.2"
+    id("io.gitlab.arturbosch.detekt") version "1.23.7"
 }
 
 group = "toptoppy.kotlin.training"
@@ -11,6 +13,9 @@ repositories {
 }
 
 dependencies {
+    // Kotlin Multiplatform Shared Module
+    implementation(project(":kmp-core"))
+
     // Kotlin Coroutines & Flow (Latest Stable)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1")
 

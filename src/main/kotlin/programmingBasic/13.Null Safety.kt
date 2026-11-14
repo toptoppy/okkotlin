@@ -46,7 +46,7 @@ fun demonstrateSafeCallOperator() {
     val length2: Int? = nullName?.length
 
     println("Length of '$validName': $length1") // 5
-    println("Length of nullName: $length2")      // null
+    println("Length of nullName: $length2") // null
 }
 
 // 3. Elvis Operator (?:) for Default Fallbacks

@@ -11,7 +11,7 @@ import kotlinx.coroutines.sync.withLock
  */
 class RateLimiter(
     private val maxTokens: Int,
-    private val refillPeriodMs: Long = 1000L
+    private val refillPeriodMs: Long = 1000L,
 ) {
     private var availableTokens: Double = maxTokens.toDouble()
     private var lastRefillTime: Long = System.currentTimeMillis()
@@ -19,15 +19,16 @@ class RateLimiter(
 
     suspend fun acquire() {
         while (true) {
-            val waitTime = mutex.withLock {
-                refillTokens()
-                if (availableTokens >= 1.0) {
-                    availableTokens -= 1.0
-                    return
+            val waitTime =
+                mutex.withLock {
+                    refillTokens()
+                    if (availableTokens >= 1.0) {
+                        availableTokens -= 1.0
+                        return
+                    }
+                    val missingTokens = 1.0 - availableTokens
+                    (missingTokens * (refillPeriodMs.toDouble() / maxTokens)).toLong().coerceAtLeast(10L)
                 }
-                val missingTokens = 1.0 - availableTokens
-                (missingTokens * (refillPeriodMs.toDouble() / maxTokens)).toLong().coerceAtLeast(10L)
-            }
             delay(waitTime)
         }
     }

@@ -10,7 +10,11 @@ trim_trailing_whitespace = true
 
 [*.{kt,kts}]
 indent_size = 4
-max_line_length = 120
+max_line_length = 140
+ktlint_standard_filename = disabled
+ktlint_standard_comment-wrapping = disabled
+ktlint_standard_no-empty-first-line-in-method-form = disabled
+ktlint_standard_package-name = disabled
 
 [*.{md,yml,yaml,json}]
 indent_size = 2

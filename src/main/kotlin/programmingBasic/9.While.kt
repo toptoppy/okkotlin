@@ -20,4 +20,3 @@ private fun repetitionWithDoWhile() {
         i++
     } while (i < 10)
 }
-

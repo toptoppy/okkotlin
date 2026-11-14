@@ -12,9 +12,18 @@ fun main() {
     println("   Kotlin supports coroutines for asynchronous programming, extension functions, and more.")
     println("5. Official for Android")
     println("   Google recommends Kotlin for Android development, ensuring ongoing support and community growth.")
+    println("6. Kotlin Multiplatform (KMP)")
+    println("   Share business logic seamlessly across JVM, Android, iOS, Desktop, and Web (JS/Wasm).")
+
+    val kmpService = toptoppy.kotlin.kmp.service.DeviceTelemetryService()
+    val kmpReport = kmpService.createReport("MainApp", 1, true)
+    println("\n   [KMP Integration Demo]")
+    println("   Platform: ${kmpReport.platform.platformName}")
+    println("   Device ID: ${kmpReport.platform.deviceId}")
 }
 
-val languageThatInfluencedKotlin = """
+val languageThatInfluencedKotlin =
+    """
     Kotlin draws its ideas and features from many languages
 
     FORTRAN: FORmula TRANslation (1957)
@@ -81,9 +90,10 @@ val languageThatInfluencedKotlin = """
     Groovy: A Dynamic JVM Language (2007)
         - Influenced Kotlin’s safe-call operators (?.) and Elvis operator (?:)
         - Viewed as a dynamic, streamlined version of Java
-""".trimIndent()
+    """.trimIndent()
 
-val kotlinMultiParadigm = """
+val kotlinMultiParadigm =
+    """
     - Imperative programming
         Description:
         Kotlin supports the traditional step-by-step approach where you use 
@@ -114,5 +124,4 @@ val kotlinMultiParadigm = """
         Description:
         Kotlin’s expressive syntax, extension functions, and infix notation 
         make it well-suited for creating clean, readable DSLs.
-""".trimIndent()
-
+    """.trimIndent()

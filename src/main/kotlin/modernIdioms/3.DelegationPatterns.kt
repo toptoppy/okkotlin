@@ -3,7 +3,7 @@ package toptoppy.kotlin.training.modernIdioms
 import kotlin.properties.Delegates
 import kotlin.reflect.KProperty
 
-/**
+/*
  * Modern Kotlin 2.x: Delegation Patterns
  *
  * Demonstrates:
@@ -14,9 +14,16 @@ import kotlin.reflect.KProperty
 
 // 1. Custom Trimmed String Delegate
 class TrimmedString(private var value: String = "") {
-    operator fun getValue(thisRef: Any?, property: KProperty<*>): String = value
+    operator fun getValue(
+        thisRef: Any?,
+        property: KProperty<*>,
+    ): String = value
 
-    operator fun setValue(thisRef: Any?, property: KProperty<*>, newValue: String) {
+    operator fun setValue(
+        thisRef: Any?,
+        property: KProperty<*>,
+        newValue: String,
+    ) {
         value = newValue.trim()
     }
 }
@@ -48,6 +55,7 @@ class UserProfile(initialAge: Int) {
 // 3. Class Delegation (Decorator Pattern)
 interface Repository<T> {
     fun save(item: T)
+
     fun findById(id: String): T?
 }
 
@@ -63,9 +71,8 @@ class InMemoryRepository<T> : Repository<T> {
 
 // LoggingRepository delegates implementation to underlying repository
 class LoggingRepository<T>(
-    private val delegate: Repository<T>
+    private val delegate: Repository<T>,
 ) : Repository<T> by delegate {
-
     override fun save(item: T) {
         println("[LOG] Before save: $item")
         delegate.save(item)

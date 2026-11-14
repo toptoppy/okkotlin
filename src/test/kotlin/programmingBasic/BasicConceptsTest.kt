@@ -1,14 +1,12 @@
 package toptoppy.kotlin.training.programmingBasic
 
-import io.kotest.matchers.shouldBe
 import io.kotest.matchers.nulls.shouldBeNull
-import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.shouldBe
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class BasicConceptsTest {
-
     @Test
     fun `test string template interpolation`() {
         val language = "Kotlin"
@@ -28,7 +26,14 @@ class BasicConceptsTest {
     @Test
     fun `test expression oriented if-else`() {
         val score = 85
-        val grade = if (score >= 90) "A" else if (score >= 80) "B" else "C"
+        val grade =
+            if (score >= 90) {
+                "A"
+            } else if (score >= 80) {
+                "B"
+            } else {
+                "C"
+            }
 
         assertEquals("B", grade)
     }
@@ -100,7 +105,10 @@ class BasicConceptsTest {
     @Test
     fun `test beginner practice challenge - compute discounted price`() {
         // Challenge for learners: compute final price with optional discount
-        fun calculateFinalPrice(basePrice: Double, discountPercentage: Double?): Double {
+        fun calculateFinalPrice(
+            basePrice: Double,
+            discountPercentage: Double?,
+        ): Double {
             val discount = discountPercentage ?: 0.0
             return basePrice * (1.0 - (discount / 100.0))
         }

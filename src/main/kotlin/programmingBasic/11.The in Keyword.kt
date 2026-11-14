@@ -2,9 +2,9 @@ package toptoppy.kotlin.training.programmingBasic
 
 fun main() {
     val percent = 40
-    println( percent in 0..100 )
+    println(percent in 0..100)
 
-    println( 't' in "kotlin" )
+    println('t' in "kotlin")
 
     for (i in 0..5) {
         println(i)

@@ -18,7 +18,7 @@ class EventPipeline(
     val bufferCapacity: Int,
     val rateLimitPerSecond: Int,
     private val filters: List<(Event) -> Boolean>,
-    private val deadLetterHandler: ((ProcessingResult.DeadLetter) -> Unit)?
+    private val deadLetterHandler: ((ProcessingResult.DeadLetter) -> Unit)?,
 ) {
     private val rateLimiter = RateLimiter(maxTokens = rateLimitPerSecond)
     private val metricsCollector = MetricsCollector()
@@ -37,19 +37,21 @@ class EventPipeline(
     /**
      * Consumes from the incoming channel and returns a Flow of processing results.
      */
-    fun processStream(): Flow<ProcessingResult> = flow {
-        for (event in incomingChannel) {
-            rateLimiter.acquire()
-            val result = processEvent(event)
-            metricsCollector.record(result)
-            emit(result)
-        }
-    }.flowOn(Dispatchers.Default)
+    fun processStream(): Flow<ProcessingResult> =
+        flow {
+            for (event in incomingChannel) {
+                rateLimiter.acquire()
+                val result = processEvent(event)
+                metricsCollector.record(result)
+                emit(result)
+            }
+        }.flowOn(Dispatchers.Default)
 
     private fun processEvent(event: Event): ProcessingResult {
-        val passesFilters = filters.all { filter ->
-            runCatching { filter(event) }.getOrDefault(false)
-        }
+        val passesFilters =
+            filters.all { filter ->
+                runCatching { filter(event) }.getOrDefault(false)
+            }
 
         if (!passesFilters) {
             return ProcessingResult.Filtered(event.id, "Rejected by pipeline filters")
@@ -65,7 +67,10 @@ class EventPipeline(
         }
     }
 
-    fun startWorker(scope: CoroutineScope, onResult: (ProcessingResult) -> Unit) = scope.launch {
+    fun startWorker(
+        scope: CoroutineScope,
+        onResult: (ProcessingResult) -> Unit,
+    ) = scope.launch {
         processStream().collect { result ->
             onResult(result)
         }

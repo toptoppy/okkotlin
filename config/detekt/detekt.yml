@@ -1,0 +1,43 @@
+naming:
+  InvalidPackageDeclaration:
+    active: false
+  MatchingDeclarationName:
+    active: false
+  FunctionNaming:
+    active: false
+  PackageNaming:
+    active: false
+
+style:
+  MagicNumber:
+    active: false
+  ForbiddenComment:
+    active: false
+  WildcardImport:
+    active: false
+  MaxLineLength:
+    maxLineLength: 140
+  ReturnCount:
+    max: 3
+  UnusedPrivateProperty:
+    active: false
+
+exceptions:
+  TooGenericExceptionCaught:
+    active: false
+  TooGenericExceptionThrown:
+    active: false
+  SwallowedException:
+    active: false
+
+complexity:
+  NestedBlockDepth:
+    threshold: 4
+  LongMethod:
+    threshold: 60
+  LargeClass:
+    threshold: 200
+
+potential-bugs:
+  UnsafeCallOnNullableType:
+    active: true

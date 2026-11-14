@@ -9,20 +9,21 @@ package toptoppy.kotlin.training.introductionToObject
  */
 
 class Cookie(
-    private var isReady: Boolean,               // [1]
+    // [1] Private property, not accessible outside containing class
+    private var isReady: Boolean,
 ) {
-    private fun crumble() = println("crumble")  // [2]
+    private fun crumble() = println("crumble") // [2]
 
-    public fun bite() = println("bite")         // [3]
+    public fun bite() = println("bite") // [3]
 
-    fun eat() {                                 // [4]
-        isReady = true                          // [5]
+    fun eat() { // [4]
+        isReady = true // [5]
         crumble()
         bite()
     }
 }
 
-fun main(){
+fun main() {
     val c = Cookie(false)
 //    c.isReady = true
 //    c.crumble()

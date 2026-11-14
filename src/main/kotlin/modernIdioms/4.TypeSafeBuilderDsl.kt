@@ -19,7 +19,7 @@ data class HttpRequest(
     val url: String,
     val headers: Map<String, String>,
     val queryParams: Map<String, String>,
-    val body: String?
+    val body: String?,
 )
 
 @HttpDslMarker
@@ -68,7 +68,7 @@ class HttpRequestBuilder {
             url = url,
             headers = headers,
             queryParams = queryParams,
-            body = body
+            body = body,
         )
     }
 }
@@ -79,23 +79,24 @@ fun httpRequest(block: HttpRequestBuilder.() -> Unit): HttpRequest {
 }
 
 fun main() {
-    val request = httpRequest {
-        method = HttpMethod.POST
-        url = "https://api.example.com/v1/orders"
+    val request =
+        httpRequest {
+            method = HttpMethod.POST
+            url = "https://api.example.com/v1/orders"
 
-        headers {
-            "Authorization" to "Bearer token_secret_123"
-            "Content-Type" to "application/json"
-            "Accept" to "application/json"
+            headers {
+                "Authorization" to "Bearer token_secret_123"
+                "Content-Type" to "application/json"
+                "Accept" to "application/json"
+            }
+
+            query {
+                "notify" to true
+                "locale" to "en_US"
+            }
+
+            body = """{"orderId": "ord_99", "amount": 125.50}"""
         }
-
-        query {
-            "notify" to true
-            "locale" to "en_US"
-        }
-
-        body = """{"orderId": "ord_99", "amount": 125.50}"""
-    }
 
     println("Constructed Request via Type-Safe DSL:")
     println("Method: ${request.method}")

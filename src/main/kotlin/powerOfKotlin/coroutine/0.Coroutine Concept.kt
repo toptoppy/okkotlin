@@ -14,42 +14,48 @@ fun main() {
     demoDispatchers()
 }
 
-fun demoRunBlocking() = runBlocking {
-    println("Start")
-    delay(1000L) // Suspends the coroutine for 1 second without blocking the thread
-    println("Hello after 1 second")
-}
-
-fun demoLaunch() = runBlocking {
-    launch {  // Starts a new coroutine inside the runBlocking scope.
-        delay(500L)
-        println("Task from launch")
+fun demoRunBlocking() =
+    runBlocking {
+        println("Start")
+        delay(1000L) // Suspends the coroutine for 1 second without blocking the thread
+        println("Hello after 1 second")
     }
-    println("Hello from runBlocking")
-}
 
-fun demoAsyncAwait() = runBlocking {
-    val deferred = async {  // Starts a coroutine that computes a result.
-        delay(1000L)
-        "Result from async"
-    }
-    println("Waiting for result...")
-    println("Got: ${deferred.await()}") // Suspends until the coroutine completes and returns its result.
-}
-
-fun demoConcurrencyAndCancellation() = runBlocking {
-    val job = launch {
-        repeat(10) { i ->
-            println("Job: $i")
+fun demoLaunch() =
+    runBlocking {
+        launch { // Starts a new coroutine inside the runBlocking scope.
             delay(500L)
+            println("Task from launch")
         }
+        println("Hello from runBlocking")
     }
-    delay(1300L) // Let the coroutine run for a while
-    println("Cancelling job")
-    job.cancel()  // Cancel the coroutine, which stops further execution.
-    job.join()    // Wait for its cancellation to complete, Ensures the cancellation process is complete before moving on.
-    println("Job cancelled")
-}
+
+fun demoAsyncAwait() =
+    runBlocking {
+        val deferred =
+            async { // Starts a coroutine that computes a result.
+                delay(1000L)
+                "Result from async"
+            }
+        println("Waiting for result...")
+        println("Got: ${deferred.await()}") // Suspends until the coroutine completes and returns its result.
+    }
+
+fun demoConcurrencyAndCancellation() =
+    runBlocking {
+        val job =
+            launch {
+                repeat(10) { i ->
+                    println("Job: $i")
+                    delay(500L)
+                }
+            }
+        delay(1300L) // Let the coroutine run for a while
+        println("Cancelling job")
+        job.cancel() // Cancel the coroutine, which stops further execution.
+        job.join() // Wait for its cancellation to complete, Ensures the cancellation process is complete before moving on.
+        println("Job cancelled")
+    }
 
 /*
     Dispatchers in Kotlin coroutines determine the thread or thread pool on which your coroutine code runs. They are a key part of the coroutine context and act as schedulers for managing where and how your coroutines execute. Here’s a breakdown:
@@ -72,14 +78,15 @@ fun demoConcurrencyAndCancellation() = runBlocking {
     After that, it may resume in a different thread, so it’s not confined to any specific thread.
     It’s mainly useful for certain advanced scenarios or testing.
  */
-fun demoDispatchers() = runBlocking {
-    launch(Dispatchers.Default) {
-        println("Running on Default dispatcher: ${Thread.currentThread().name}")
+fun demoDispatchers() =
+    runBlocking {
+        launch(Dispatchers.Default) {
+            println("Running on Default dispatcher: ${Thread.currentThread().name}")
+        }
+        launch(Dispatchers.IO) {
+            println("Running on IO dispatcher: ${Thread.currentThread().name}")
+        }
+        launch(Dispatchers.Unconfined) {
+            println("Running on Unconfined dispatcher: ${Thread.currentThread().name}")
+        }
     }
-    launch(Dispatchers.IO) {
-        println("Running on IO dispatcher: ${Thread.currentThread().name}")
-    }
-    launch(Dispatchers.Unconfined) {
-        println("Running on Unconfined dispatcher: ${Thread.currentThread().name}")
-    }
-}

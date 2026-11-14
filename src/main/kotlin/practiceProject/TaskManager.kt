@@ -21,7 +21,7 @@ data class Task(
     val title: String,
     val priority: Priority = Priority.MEDIUM,
     val isCompleted: Boolean = false,
-    val dueDate: LocalDate? = null
+    val dueDate: LocalDate? = null,
 )
 
 class TaskManager {
@@ -46,17 +46,13 @@ class TaskManager {
 
     fun findTaskById(id: String): Task? = tasks.find { it.id == id }
 
-    fun getPendingTasks(): List<Task> =
-        tasks.filter { !it.isCompleted }
+    fun getPendingTasks(): List<Task> = tasks.filter { !it.isCompleted }
 
-    fun getCompletedTasks(): List<Task> =
-        tasks.filter { it.isCompleted }
+    fun getCompletedTasks(): List<Task> = tasks.filter { it.isCompleted }
 
-    fun getTasksGroupedByPriority(): Map<Priority, List<Task>> =
-        tasks.groupBy { it.priority }
+    fun getTasksGroupedByPriority(): Map<Priority, List<Task>> = tasks.groupBy { it.priority }
 
-    fun getTasksSortedByDueDate(): List<Task> =
-        tasks.sortedWith(compareBy(nullsLast()) { it.dueDate })
+    fun getTasksSortedByDueDate(): List<Task> = tasks.sortedWith(compareBy(nullsLast()) { it.dueDate })
 
     fun totalTaskCount(): Int = tasks.size
 

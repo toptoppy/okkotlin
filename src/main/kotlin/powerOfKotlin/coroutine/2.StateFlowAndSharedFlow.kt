@@ -22,6 +22,7 @@ data class ViewState(val isLoading: Boolean = false, val count: Int = 0, val err
 
 sealed interface UIEvent {
     data class ShowToast(val message: String) : UIEvent
+
     data class NavigateTo(val route: String) : UIEvent
 }
 
@@ -31,11 +32,12 @@ class DashboardViewModel {
     val state = _state.asStateFlow()
 
     // SharedFlow for ephemeral events
-    private val _events = MutableSharedFlow<UIEvent>(
-        replay = 0,
-        extraBufferCapacity = 10,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
-    )
+    private val _events =
+        MutableSharedFlow<UIEvent>(
+            replay = 0,
+            extraBufferCapacity = 10,
+            onBufferOverflow = BufferOverflow.DROP_OLDEST,
+        )
     val events = _events.asSharedFlow()
 
     fun increment() {
@@ -52,33 +54,36 @@ class DashboardViewModel {
     }
 }
 
-fun main() = runBlocking {
-    val viewModel = DashboardViewModel()
+fun main() =
+    runBlocking {
+        val viewModel = DashboardViewModel()
 
-    // Collector 1: Monitors View State
-    val stateJob = launch {
-        viewModel.state.collect { state ->
-            println("[UI STATE] Count: ${state.count}, Loading: ${state.isLoading}")
-        }
-    }
-
-    // Collector 2: Monitors Ephemeral Events
-    val eventJob = launch {
-        viewModel.events.collect { event ->
-            when (event) {
-                is UIEvent.ShowToast -> println("[TOAST EVENT] ${event.message}")
-                is UIEvent.NavigateTo -> println("[NAVIGATION EVENT] Moving to ${event.route}")
+        // Collector 1: Monitors View State
+        val stateJob =
+            launch {
+                viewModel.state.collect { state ->
+                    println("[UI STATE] Count: ${state.count}, Loading: ${state.isLoading}")
+                }
             }
-        }
+
+        // Collector 2: Monitors Ephemeral Events
+        val eventJob =
+            launch {
+                viewModel.events.collect { event ->
+                    when (event) {
+                        is UIEvent.ShowToast -> println("[TOAST EVENT] ${event.message}")
+                        is UIEvent.NavigateTo -> println("[NAVIGATION EVENT] Moving to ${event.route}")
+                    }
+                }
+            }
+
+        delay(100L)
+        viewModel.increment()
+        viewModel.increment()
+        viewModel.increment() // Triggers toast
+        viewModel.triggerNavigation()
+
+        delay(200L)
+        stateJob.cancel()
+        eventJob.cancel()
     }
-
-    delay(100L)
-    viewModel.increment()
-    viewModel.increment()
-    viewModel.increment() // Triggers toast
-    viewModel.triggerNavigation()
-
-    delay(200L)
-    stateJob.cancel()
-    eventJob.cancel()
-}

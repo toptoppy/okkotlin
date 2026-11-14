@@ -6,7 +6,6 @@ import io.kotest.matchers.string.shouldContain
 import kotlin.test.Test
 
 class ModernIdiomsTest {
-
     @Test
     fun `test sealed payment status pattern matching`() {
         val pending = PaymentStatus.Pending("tx-1", attempt = 1)
@@ -48,16 +47,17 @@ class ModernIdiomsTest {
 
     @Test
     fun `test type-safe HTTP builder DSL`() {
-        val request = httpRequest {
-            method = HttpMethod.POST
-            url = "https://api.test.com/v1/auth"
-            headers {
-                "Authorization" to "Bearer abc"
+        val request =
+            httpRequest {
+                method = HttpMethod.POST
+                url = "https://api.test.com/v1/auth"
+                headers {
+                    "Authorization" to "Bearer abc"
+                }
+                query {
+                    "redirect" to true
+                }
             }
-            query {
-                "redirect" to true
-            }
-        }
 
         request.method shouldBe HttpMethod.POST
         request.url shouldBe "https://api.test.com/v1/auth"

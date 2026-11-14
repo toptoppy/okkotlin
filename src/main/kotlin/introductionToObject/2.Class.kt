@@ -25,7 +25,6 @@ private fun classAndProperty() {
 //    c1.max = 150
 }
 
-
 class Cup {
     var percentFull = 0
     val max = 100
@@ -39,10 +38,9 @@ class Cup {
     }
 }
 
-
 private fun classAndConstructor() {
-    val predator = AlienSpecies("predator", 2,2,2)
-    val zerg = AlienSpecies("zerg", 4,2,0)
+    val predator = AlienSpecies("predator", 2, 2, 2)
+    val zerg = AlienSpecies("zerg", 4, 2, 0)
 
     println(predator.describe())
 
@@ -54,6 +52,6 @@ class AlienSpecies(
     val eyes: Int,
     val hands: Int,
     val legs: Int,
-){
+) {
     fun describe() = "name: $name, eyes: $eyes, hands: $hands, legs: $legs"
 }

@@ -17,33 +17,36 @@ import kotlinx.coroutines.runBlocking
 
 data class WorkTask(val id: Int, val payload: String)
 
-fun main() = runBlocking {
-    // Channel with capacity buffer of 3 items
-    val taskChannel = Channel<WorkTask>(capacity = 3)
+fun main() =
+    runBlocking {
+        // Channel with capacity buffer of 3 items
+        val taskChannel = Channel<WorkTask>(capacity = 3)
 
-    // Producer Coroutine
-    val producerJob = launch {
-        for (i in 1..5) {
-            val task = WorkTask(id = i, payload = "Payload-$i")
-            println("[Producer] Sending $task...")
-            taskChannel.send(task) // Suspends if the buffer is full (backpressure)
-            println("[Producer] Sent $task successfully")
-            delay(100L)
-        }
-        taskChannel.close() // Signal that no more items will be sent
-        println("[Producer] Channel closed")
+        // Producer Coroutine
+        val producerJob =
+            launch {
+                for (i in 1..5) {
+                    val task = WorkTask(id = i, payload = "Payload-$i")
+                    println("[Producer] Sending $task...")
+                    taskChannel.send(task) // Suspends if the buffer is full (backpressure)
+                    println("[Producer] Sent $task successfully")
+                    delay(100L)
+                }
+                taskChannel.close() // Signal that no more items will be sent
+                println("[Producer] Channel closed")
+            }
+
+        // Consumer Coroutine
+        val consumerJob =
+            launch {
+                delay(250L) // Consumer starts slightly slower to illustrate buffer filling
+                taskChannel.consumeEach { task ->
+                    println("   -> [Consumer] Received & processing $task")
+                    delay(150L) // Simulating work
+                }
+                println("   -> [Consumer] All tasks consumed")
+            }
+
+        producerJob.join()
+        consumerJob.join()
     }
-
-    // Consumer Coroutine
-    val consumerJob = launch {
-        delay(250L) // Consumer starts slightly slower to illustrate buffer filling
-        taskChannel.consumeEach { task ->
-            println("   -> [Consumer] Received & processing $task")
-            delay(150L) // Simulating work
-        }
-        println("   -> [Consumer] All tasks consumed")
-    }
-
-    producerJob.join()
-    consumerJob.join()
-}

@@ -6,11 +6,12 @@ private fun isOpen(hour: Int) {
     val open = 9
     val close = 20
     println("Operating hours: $open - $close")
-    val status = if (hour >= open && hour < close) {
-        true
-    } else {
-        false
-    }
+    val status =
+        if (hour >= open && hour < close) {
+            true
+        } else {
+            false
+        }
 
     println(status)
 }

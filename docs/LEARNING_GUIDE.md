@@ -61,7 +61,7 @@ Companion Theory Guide: [`Core Concept of Programming Language.md`](../src/main/
 ---
 
 ### Lesson 1: Hello World & Toolchain Setup
-- **File:** [`1.Hello, World!.kt`](../src/main/kotlin/programmingBasic/1.Hello,%20World!.kt)
+- **File:** [`1.Hello World.kt`](../src/main/kotlin/programmingBasic/1.Hello%20World.kt)
 - **Concept:** Every Kotlin program begins execution at a top-level `fun main()` function. Unlike Java, you do **not** need an enclosing class (`public class Main`) just to print a line. Semicolons are optional and idiomatic Kotlin omits them.
 - 🎯 **Practice Task:** Modify `main()` to print your name and favorite programming goal on two separate lines.
 - 📤 **Expected Output:**
@@ -296,4 +296,41 @@ Located in: [`src/main/kotlin/powerOfKotlin/coroutine/`](../src/main/kotlin/powe
 Run the Capstone:
 ```bash
 ./gradlew runCapstone
+```
+
+---
+
+## 🌐 Module 6: Kotlin Multiplatform (KMP) Shared Module
+
+Located in: [`kmp-core/`](../kmp-core/)  
+Targets: **JVM** (`jvmMain`) and **JavaScript (Node.js)** (`jsMain`)
+
+Kotlin Multiplatform allows you to write business logic once and share it seamlessly across JVM, iOS, Android, Desktop, and Web:
+- **Common Domain Models:** [`kmp-core/src/commonMain/kotlin/toptoppy/kotlin/kmp/model/PlatformModels.kt`](../kmp-core/src/commonMain/kotlin/toptoppy/kotlin/kmp/model/PlatformModels.kt)
+- **Expect/Actual Mechanism:**
+  - Common interface: [`Platform.kt`](../kmp-core/src/commonMain/kotlin/toptoppy/kotlin/kmp/Platform.kt) declares `expect fun getPlatformName()`, `expect fun getCurrentEpochMillis()`, `expect fun generatePlatformUUID()`.
+  - JVM implementation: [`Platform.jvm.kt`](../kmp-core/src/jvmMain/kotlin/toptoppy/kotlin/kmp/Platform.jvm.kt) resolves to Java standard libraries (`java.lang.System`, `java.util.UUID`).
+  - JavaScript implementation: [`Platform.js.kt`](../kmp-core/src/jsMain/kotlin/toptoppy/kotlin/kmp/Platform.js.kt) resolves to JavaScript runtime (`Date.now()`, Math crypto UUID).
+- **Shared Service Logic:** [`DeviceTelemetryService.kt`](../kmp-core/src/commonMain/kotlin/toptoppy/kotlin/kmp/service/DeviceTelemetryService.kt) provides business metrics formatting across all targets.
+
+Run cross-platform tests across all targets:
+```bash
+./gradlew :kmp-core:allTests
+```
+
+---
+
+## 🛡️ Code Quality & Static Analysis (Ktlint + Detekt)
+
+This repository adheres to strict industry quality standards:
+- **Ktlint:** Enforces idiomatic Kotlin official style guide and prevents formatting drift.
+- **Detekt:** Static code analysis ensuring 0 code smells, manageable cognitive complexity, and clean architecture.
+
+Run linter and static analysis checks:
+```bash
+# Check styling and code smells
+./gradlew ktlintCheck detekt
+
+# Automatically format code
+./gradlew ktlintFormat
 ```

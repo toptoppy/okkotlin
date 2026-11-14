@@ -5,7 +5,6 @@ import io.kotest.matchers.string.shouldContain
 import kotlin.test.Test
 
 class ObjectModelingTest {
-
     @Test
     fun `test Cup initial state and capacity cap`() {
         val cup = Cup()

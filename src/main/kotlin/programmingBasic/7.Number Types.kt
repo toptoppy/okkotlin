@@ -20,7 +20,6 @@ fun main() {
     val result = 4 + 5 * 6
     println(result)
 
-    val result2 = ( 4 + 5 ) * 6
+    val result2 = (4 + 5) * 6
     println(result2)
-
 }

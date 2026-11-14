@@ -34,6 +34,7 @@ value class UsdAmount(val cents: Long) {
     val dollars: Double get() = cents / 100.0
 
     operator fun plus(other: UsdAmount): UsdAmount = UsdAmount(this.cents + other.cents)
+
     operator fun minus(other: UsdAmount): UsdAmount = UsdAmount(this.cents - other.cents)
 
     override fun toString(): String = "$${String.format("%.2f", dollars)}"
@@ -42,7 +43,7 @@ value class UsdAmount(val cents: Long) {
 data class Order(
     val orderId: OrderId,
     val customerId: CustomerId,
-    val total: UsdAmount
+    val total: UsdAmount,
 )
 
 fun processOrder(order: Order): String {

@@ -8,7 +8,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.supervisorScope
 import kotlin.coroutines.coroutineContext
 
-/**
+/*
  * Modern Kotlin 2.x Coroutines: Structured Concurrency & Resilience
  *
  * Demonstrates:
@@ -24,7 +24,7 @@ suspend fun <T> retryWithBackoff(
     initialDelayMs: Long = 100L,
     maxDelayMs: Long = 1000L,
     factor: Double = 2.0,
-    block: suspend (attempt: Int) -> T
+    block: suspend (attempt: Int) -> T,
 ): T {
     var currentDelay = initialDelayMs
     repeat(times - 1) { attempt ->
@@ -39,54 +39,58 @@ suspend fun <T> retryWithBackoff(
     return block(times) // Last attempt throws if it fails
 }
 
-fun main() = runBlocking {
-    println("=== 1. Failure Isolation with supervisorScope ===")
+fun main() =
+    runBlocking {
+        println("=== 1. Failure Isolation with supervisorScope ===")
 
-    val handler = CoroutineExceptionHandler { _, exception ->
-        println("[SupervisorHandler] Caught uncaught exception: ${exception.message}")
-    }
+        val handler =
+            CoroutineExceptionHandler { _, exception ->
+                println("[SupervisorHandler] Caught uncaught exception: ${exception.message}")
+            }
 
-    supervisorScope {
-        // Child 1 fails
-        launch(handler) {
-            println("[Task 1] Starting...")
-            delay(100L)
-            throw IllegalStateException("Database connection dropped in Task 1!")
+        supervisorScope {
+            // Child 1 fails
+            launch(handler) {
+                println("[Task 1] Starting...")
+                delay(100L)
+                throw IllegalStateException("Database connection dropped in Task 1!")
+            }
+
+            // Child 2 survives because supervisorScope isolates failures
+            launch {
+                println("[Task 2] Starting...")
+                delay(250L)
+                println("[Task 2] Completed successfully despite Task 1 failure!")
+            }
         }
 
-        // Child 2 survives because supervisorScope isolates failures
-        launch {
-            println("[Task 2] Starting...")
-            delay(250L)
-            println("[Task 2] Completed successfully despite Task 1 failure!")
-        }
-    }
+        println("\n=== 2. Cooperative Cancellation ===")
+        val cancellableJob =
+            launch {
+                var count = 0
+                while (count < 10) {
+                    // Checks whether the coroutine is still active; throws CancellationException if cancelled
+                    coroutineContext.ensureActive()
+                    println("Working step $count...")
+                    delay(50L)
+                    count++
+                }
+            }
+        delay(120L)
+        println("Cancelling job...")
+        cancellableJob.cancel()
+        cancellableJob.join()
+        println("Job cancelled cooperatively.")
 
-    println("\n=== 2. Cooperative Cancellation ===")
-    val cancellableJob = launch {
-        var count = 0
-        while (count < 10) {
-            // Checks whether the coroutine is still active; throws CancellationException if cancelled
-            coroutineContext.ensureActive()
-            println("Working step $count...")
-            delay(50L)
-            count++
-        }
+        println("\n=== 3. Exponential Backoff Retry Demo ===")
+        var failCount = 0
+        val result =
+            retryWithBackoff(times = 3) { attempt ->
+                if (failCount < 2) {
+                    failCount++
+                    throw RuntimeException("Network timeout")
+                }
+                "Remote Data Acquired on attempt $attempt"
+            }
+        println("Final result: $result")
     }
-    delay(120L)
-    println("Cancelling job...")
-    cancellableJob.cancel()
-    cancellableJob.join()
-    println("Job cancelled cooperatively.")
-
-    println("\n=== 3. Exponential Backoff Retry Demo ===")
-    var failCount = 0
-    val result = retryWithBackoff(times = 3) { attempt ->
-        if (failCount < 2) {
-            failCount++
-            throw RuntimeException("Network timeout")
-        }
-        "Remote Data Acquired on attempt $attempt"
-    }
-    println("Final result: $result")
-}

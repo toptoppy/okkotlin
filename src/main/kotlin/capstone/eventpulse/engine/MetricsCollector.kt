@@ -17,18 +17,21 @@ class MetricsCollector {
     fun record(result: ProcessingResult) {
         _metrics.update { current ->
             when (result) {
-                is ProcessingResult.Success -> current.copy(
-                    totalReceived = current.totalReceived + 1,
-                    successCount = current.successCount + 1
-                )
-                is ProcessingResult.Filtered -> current.copy(
-                    totalReceived = current.totalReceived + 1,
-                    filteredCount = current.filteredCount + 1
-                )
-                is ProcessingResult.DeadLetter -> current.copy(
-                    totalReceived = current.totalReceived + 1,
-                    deadLetterCount = current.deadLetterCount + 1
-                )
+                is ProcessingResult.Success ->
+                    current.copy(
+                        totalReceived = current.totalReceived + 1,
+                        successCount = current.successCount + 1,
+                    )
+                is ProcessingResult.Filtered ->
+                    current.copy(
+                        totalReceived = current.totalReceived + 1,
+                        filteredCount = current.filteredCount + 1,
+                    )
+                is ProcessingResult.DeadLetter ->
+                    current.copy(
+                        totalReceived = current.totalReceived + 1,
+                        deadLetterCount = current.deadLetterCount + 1,
+                    )
             }
         }
     }

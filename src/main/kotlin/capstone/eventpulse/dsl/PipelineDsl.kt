@@ -30,7 +30,7 @@ class EventPipelineBuilder {
             bufferCapacity = bufferCapacity,
             rateLimitPerSecond = rateLimitPerSecond,
             filters = filters.toList(),
-            deadLetterHandler = deadLetterHandler
+            deadLetterHandler = deadLetterHandler,
         )
     }
 }

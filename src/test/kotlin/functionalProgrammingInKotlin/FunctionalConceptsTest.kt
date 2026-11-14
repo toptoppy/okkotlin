@@ -5,7 +5,6 @@ import io.kotest.matchers.shouldBe
 import kotlin.test.Test
 
 class FunctionalConceptsTest {
-
     @Test
     fun `test immutable list preservation`() {
         val original = listOf("Apple", "Banana")
@@ -17,7 +16,10 @@ class FunctionalConceptsTest {
 
     @Test
     fun `test higher order function execution`() {
-        fun transform(values: List<Int>, op: (Int) -> Int): List<Int> = values.map(op)
+        fun transform(
+            values: List<Int>,
+            op: (Int) -> Int,
+        ): List<Int> = values.map(op)
 
         val doubled = transform(listOf(1, 2, 3)) { it * 2 }
         doubled shouldBe listOf(2, 4, 6)
@@ -25,9 +27,13 @@ class FunctionalConceptsTest {
 
     @Test
     fun `test Result monad safe failure recovery`() {
-        fun safeDivide(numerator: Int, denominator: Int): Result<Int> = runCatching {
-            numerator / denominator
-        }
+        fun safeDivide(
+            numerator: Int,
+            denominator: Int,
+        ): Result<Int> =
+            runCatching {
+                numerator / denominator
+            }
 
         val success = safeDivide(10, 2)
         success.isSuccess shouldBe true

@@ -10,21 +10,22 @@ fun main() {
     oneLineIfElse()
 }
 
-
 private fun ifExpressionEx() {
     if (1 > 0) {
         println("It's true!")
     }
 
-    if (0 < 1)
+    if (0 < 1) {
         println("It's also true!")
+    }
 }
 
 private fun expressionInInitalValue() {
     val x = 1 >= 1
 
-    if (x)
+    if (x) {
         println("x is true!")
+    }
 }
 
 private fun ifElseElseIf() {
